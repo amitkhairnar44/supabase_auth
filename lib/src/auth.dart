@@ -7,11 +7,30 @@ abstract class AuthStateListener {
 }
 
 class SupabaseAuth {
+  static SupabaseAuth _instance;
+
+  /// User credentials of current logged-in user
   UserCredential _userCredential;
+
   _AuthApi _api;
+
+  /// List of [AuthStateListener]
   List<AuthStateListener> _subscribers;
 
-  SupabaseAuth({@required String apiKey, @required String supabaseUrl}) {
+  /// Default constructor to initialise
+  factory SupabaseAuth({
+    @required String apiKey,
+    @required String supabaseUrl,
+  }) {
+    if (_instance == null) {
+      _instance = SupabaseAuth._privateConstructor(
+          apiKey: apiKey, supabaseUrl: supabaseUrl);
+      return _instance;
+    }
+    return _instance;
+  }
+
+  SupabaseAuth._privateConstructor({String apiKey, String supabaseUrl}) {
     _subscribers = List<AuthStateListener>();
     _api = _AuthApi(apiKey: apiKey, supabaseUrl: supabaseUrl);
   }
