@@ -20,6 +20,6 @@ var userCredential = await _auth.signIn(email: "example@xyz.com",password: "your
 
 ### Logout
 ```dart
-This will logout current user
+// This will logout current user
 _auth.logout();
 ```
