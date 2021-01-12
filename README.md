@@ -1,14 +1,25 @@
 # supabase_auth
 
-A Supabse Auth Flutter package.
+A Supabase Auth Dart package.
 
-## Getting Started
+## Usage
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+```dart
+import 'package:supabase_auth/supabase_auth.dart';
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+// Initialise auth with apikey and url provided by Supabase
+var _auth = SupabaseAuth(apiKey: YOUR_APIKEY, supabaseUrl: SUPABASE_URL);
+
+// Sign up user using email and password
+var user = await _auth.signUp(email: "example@xyz.com",password: "yourpassword");
+
+// Sign in using email and password
+// This will return userCredentials such as access token, refresh token alongwith current user
+var userCredential = await _auth.signIn(email: "example@xyz.com",password: "yourpassword");
+```
+
+### Logout
+```dart
+This will logout current user
+_auth.logout();
+```
