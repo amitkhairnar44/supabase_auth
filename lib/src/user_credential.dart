@@ -34,4 +34,28 @@ class UserCredential {
         accessToken: parsedJson['access_token'],
         refreshToken: parsedJson['refresh_token']);
   }
+
+  @override
+  int get hashCode =>
+      accessToken.hashCode ^
+      tokenType.hashCode ^
+      refreshToken.hashCode ^
+      expiresIn.hashCode ^
+      user.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is UserCredential &&
+          runtimeType == other.runtimeType &&
+          accessToken == other.accessToken &&
+          tokenType == other.tokenType &&
+          refreshToken == other.refreshToken &&
+          expiresIn == other.expiresIn &&
+          user == other.user;
+
+  @override
+  String toString() {
+    return 'UserCredential{accessToken: $accessToken, tokenType: $tokenType, refreshToken: $refreshToken, expiresIn: $expiresIn, user: $user}';
+  }
 }

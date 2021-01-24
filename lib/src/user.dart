@@ -53,4 +53,36 @@ class User {
         appMetadata: parsedJson['app_metadata'],
         userMetadata: parsedJson['user_metadata']);
   }
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      aud.hashCode ^
+      role.hashCode ^
+      email.hashCode ^
+      confirmationSentAt.hashCode ^
+      createdAt.hashCode ^
+      updatedAt.hashCode ^
+      appMetadata.hashCode ^
+      userMetadata.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is User &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          aud == other.aud &&
+          role == other.role &&
+          email == other.email &&
+          confirmationSentAt == other.confirmationSentAt &&
+          createdAt == other.createdAt &&
+          updatedAt == other.updatedAt &&
+          appMetadata == other.appMetadata &&
+          userMetadata == other.userMetadata;
+
+  @override
+  String toString() {
+    return 'User{id: $id, aud: $aud, role: $role, email: $email, confirmationSentAt: $confirmationSentAt, createdAt: $createdAt, updatedAt: $updatedAt, appMetadata: $appMetadata, userMetadata: $userMetadata}';
+  }
 }

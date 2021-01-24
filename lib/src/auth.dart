@@ -18,19 +18,17 @@ class SupabaseAuth {
   List<AuthStateListener> _subscribers;
 
   /// Default constructor to initialise
-  factory SupabaseAuth({
-    @required String apiKey,
-    @required String supabaseUrl,
-  }) {
+  factory SupabaseAuth(
+      {@required String apiKey, @required String supabaseUrl}) {
     if (_instance == null) {
-      _instance = SupabaseAuth._privateConstructor(
-          apiKey: apiKey, supabaseUrl: supabaseUrl);
+      _instance = SupabaseAuth._(apiKey: apiKey, supabaseUrl: supabaseUrl);
       return _instance;
     }
     return _instance;
   }
 
-  SupabaseAuth._privateConstructor({String apiKey, String supabaseUrl}) {
+  /// Private Constructor
+  SupabaseAuth._({String apiKey, String supabaseUrl}) {
     _subscribers = List<AuthStateListener>();
     _api = _AuthApi(apiKey: apiKey, supabaseUrl: supabaseUrl);
   }
